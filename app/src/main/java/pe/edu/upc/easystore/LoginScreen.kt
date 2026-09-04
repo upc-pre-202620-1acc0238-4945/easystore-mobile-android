@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -17,7 +16,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -71,10 +69,16 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             visualTransformation = if (isHiddenPassword.value) PasswordVisualTransformation() else
                 VisualTransformation.None,
             trailingIcon = {
-                Button(onClick = {
+                IconButton(onClick = {
                     isHiddenPassword.value = !isHiddenPassword.value
                 }) {
-
+                    Icon(
+                        imageVector =
+                            if (isHiddenPassword.value) {
+                                visibilityOff
+                            } else
+                                visibility, contentDescription = "visibility"
+                    )
                 }
             }
         )
@@ -85,7 +89,8 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 @Composable
 fun LoginScreenPreview() {
     EasyStoreTheme(
-        dynamicColor = false) {
+        dynamicColor = false
+    ) {
         LoginScreen()
     }
 
