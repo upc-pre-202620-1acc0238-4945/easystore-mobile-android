@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pe.edu.upc.easystore.ui.theme.EasyStoreTheme
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
@@ -83,5 +84,9 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen()
+    EasyStoreTheme(
+        dynamicColor = false) {
+        LoginScreen()
+    }
+
 }
