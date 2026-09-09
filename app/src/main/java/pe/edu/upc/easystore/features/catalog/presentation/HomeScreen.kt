@@ -13,31 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import pe.edu.upc.easystore.features.catalog.domain.Product
 import pe.edu.upc.easystore.core.theme.EasyStoreTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
 
-    val products = listOf(
-        Product(
-            id = 1,
-            name = "Product 1",
-            description = "Description 1",
-            price = 10.0,
-            rating = 4.5,
-            imageUrl = "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp"
-        ),
-        Product(
-            id = 2,
-            name = "Product 2",
-            description = "Description 2",
-            price = 20.0,
-            rating = 4.0,
-            imageUrl = "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/thumbnail.webp"
-        )
-    )
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
+
     LazyColumn(modifier = modifier.fillMaxSize()) {
         item {
             Text(text = "Home Screen")
@@ -47,7 +31,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             Text(text = "Item $index")
         }
 
-        items(products) { product ->
+        items(uiState.products) { product ->
             Card(modifier = Modifier
                 .fillMaxWidth(0.5f)
                 .padding(8.dp)) {
@@ -72,7 +56,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Composable
 fun HomeScreenPreview() {
     EasyStoreTheme(dynamicColor = false) {
-        HomeScreen()
+
 
     }
 }
