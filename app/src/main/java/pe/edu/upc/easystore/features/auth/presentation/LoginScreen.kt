@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore
+package pe.edu.upc.easystore.features.auth.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pe.edu.upc.easystore.ui.theme.EasyStoreTheme
+import pe.edu.upc.easystore.core.visibility
+import pe.edu.upc.easystore.core.visibilityOff
+import pe.edu.upc.easystore.core.theme.EasyStoreTheme
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {

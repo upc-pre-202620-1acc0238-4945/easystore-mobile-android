@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore
+package pe.edu.upc.easystore.features.onboarding.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

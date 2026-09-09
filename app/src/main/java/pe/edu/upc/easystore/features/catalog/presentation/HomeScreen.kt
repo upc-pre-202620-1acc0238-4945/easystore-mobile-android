@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore
+package pe.edu.upc.easystore.features.catalog.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import pe.edu.upc.easystore.ui.theme.EasyStoreTheme
+import pe.edu.upc.easystore.features.catalog.domain.Product
+import pe.edu.upc.easystore.core.theme.EasyStoreTheme
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {

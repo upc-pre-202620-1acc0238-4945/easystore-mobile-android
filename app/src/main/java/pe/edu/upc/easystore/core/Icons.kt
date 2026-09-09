@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore
+package pe.edu.upc.easystore.core
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType
