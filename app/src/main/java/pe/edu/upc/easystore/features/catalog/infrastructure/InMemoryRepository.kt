@@ -1,7 +1,9 @@
 package pe.edu.upc.easystore.features.catalog.infrastructure
 
+import kotlinx.coroutines.delay
 import pe.edu.upc.easystore.features.catalog.domain.Product
 import pe.edu.upc.easystore.features.catalog.domain.ProductRepository
+import kotlin.time.Duration.Companion.milliseconds
 
 class InMemoryRepository: ProductRepository {
 
@@ -23,7 +25,8 @@ class InMemoryRepository: ProductRepository {
             imageUrl = "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/thumbnail.webp"
         )
     )
-    override fun getProducts(): List<Product> {
+    override suspend fun getProducts(): List<Product> {
+        delay(3000.milliseconds)
         return _products
     }
 }

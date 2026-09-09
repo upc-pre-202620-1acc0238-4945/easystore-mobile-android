@@ -5,5 +5,5 @@ import pe.edu.upc.easystore.features.catalog.infrastructure.InMemoryRepository
 
 class GetProductsUseCase(private val repository: ProductRepository = InMemoryRepository()) {
 
-    operator fun invoke() = repository.getProducts()
+    suspend operator fun invoke() = repository.getProducts()
 }
