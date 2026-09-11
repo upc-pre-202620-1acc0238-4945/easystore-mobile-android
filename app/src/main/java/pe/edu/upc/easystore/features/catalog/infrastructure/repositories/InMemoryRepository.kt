@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore.features.catalog.infrastructure
+package pe.edu.upc.easystore.features.catalog.infrastructure.repositories
 
 import kotlinx.coroutines.delay
 import pe.edu.upc.easystore.features.catalog.domain.Product
