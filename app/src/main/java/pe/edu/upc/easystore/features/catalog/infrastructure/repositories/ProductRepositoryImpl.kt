@@ -3,16 +3,10 @@ package pe.edu.upc.easystore.features.catalog.infrastructure.repositories
 import pe.edu.upc.easystore.features.catalog.domain.Product
 import pe.edu.upc.easystore.features.catalog.domain.ProductRepository
 import pe.edu.upc.easystore.features.catalog.infrastructure.remote.ProductService
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class ProductRepositoryImpl(private val service: ProductService
-    = Retrofit.Builder()
-        .baseUrl("https://dummyjson.com/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(ProductService::class.java)
-
+class ProductRepositoryImpl @Inject constructor(
+    private val service: ProductService
 ) : ProductRepository {
     override suspend fun getProducts(): List<Product> {
 
