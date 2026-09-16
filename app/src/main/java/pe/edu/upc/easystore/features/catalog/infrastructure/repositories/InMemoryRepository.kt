@@ -6,7 +6,7 @@ import pe.edu.upc.easystore.features.catalog.domain.ProductRepository
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.milliseconds
 
-class InMemoryRepository @Inject constructor(): ProductRepository {
+class InMemoryRepository @Inject constructor() : ProductRepository {
 
     private val _products = listOf(
         Product(
@@ -26,8 +26,13 @@ class InMemoryRepository @Inject constructor(): ProductRepository {
             imageUrl = "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/thumbnail.webp"
         )
     )
+
     override suspend fun getProducts(): List<Product> {
         delay(3000.milliseconds)
         return _products
+    }
+
+    override suspend fun getProductById(id: Int): Product? {
+        return _products.find { it.id == id }
     }
 }
