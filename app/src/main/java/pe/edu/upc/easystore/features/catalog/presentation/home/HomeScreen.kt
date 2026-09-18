@@ -22,6 +22,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import pe.edu.upc.easystore.core.desingsystem.theme.EasyStoreTheme
+import pe.edu.upc.easystore.features.catalog.presentation.home.components.ProductCard
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel = hiltViewModel()) {
@@ -40,25 +41,7 @@ fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel = hiltVie
                 LazyColumn(modifier = modifier.fillMaxSize()) {
 
                     items(uiState.products) { product ->
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                        ) {
-                            Column(modifier = Modifier.padding(8.dp)) {
-
-                                AsyncImage(
-                                    model = product.imageUrl,
-                                    contentDescription = product.name,
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(200.dp)
-                                )
-                                Text(text = product.name, fontWeight = FontWeight.Bold)
-                                Text(text = "Rating: ${product.rating}")
-                                Text(text = "$${product.price}")
-                            }
-                        }
+                       ProductCard(product = product)
                     }
                 }
             }
