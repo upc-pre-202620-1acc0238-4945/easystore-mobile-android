@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore.features.catalog.presentation
+package pe.edu.upc.easystore.features.catalog.presentation.productdetail
 
 import pe.edu.upc.easystore.features.catalog.domain.Product
 
