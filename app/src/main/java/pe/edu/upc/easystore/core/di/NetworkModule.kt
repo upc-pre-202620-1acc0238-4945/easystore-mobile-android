@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore.core
+package pe.edu.upc.easystore.core.di
 
 import dagger.Module
 import dagger.Provides
