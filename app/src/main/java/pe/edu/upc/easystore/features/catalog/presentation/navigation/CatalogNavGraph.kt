@@ -14,7 +14,7 @@ fun NavGraphBuilder.catalogNavGraph(navController: NavController) {
         HomeScreen()
     }
 
-    composable("product_detail") {
+    composable("product_detail/{id}") {
 
     }
 }
