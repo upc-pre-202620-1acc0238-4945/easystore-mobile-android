@@ -10,10 +10,10 @@ activityCompose = "1.13.0"
 kotlin = "2.4.20"
 composeBom = "2026.09.00"
 retrofit = "3.0.0"
-
 ksp = "2.3.4"
 hilt  = "2.60.1"
 hiltNavigationCompose = "1.4.0"
+kotlinSerialization = "2.4.20"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,3 +47,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
+kotlin-serialization = {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
