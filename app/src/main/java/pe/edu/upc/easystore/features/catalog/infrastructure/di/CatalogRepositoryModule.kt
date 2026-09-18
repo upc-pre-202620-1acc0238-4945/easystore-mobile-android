@@ -9,7 +9,7 @@ import pe.edu.upc.easystore.features.catalog.infrastructure.repositories.Product
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface RepositoryModule {
+interface CatalogRepositoryModule {
 
     @Binds
     fun provideProductRepository(impl: ProductRepositoryImpl): ProductRepository
