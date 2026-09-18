@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
-import pe.edu.upc.easystore.core.theme.EasyStoreTheme
+import pe.edu.upc.easystore.core.desingsystem.theme.EasyStoreTheme
 import pe.edu.upc.easystore.features.catalog.presentation.HomeScreen
 
 @AndroidEntryPoint

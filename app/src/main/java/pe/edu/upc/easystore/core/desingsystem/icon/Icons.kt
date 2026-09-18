@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore.core
+package pe.edu.upc.easystore.core.desingsystem.icon
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType

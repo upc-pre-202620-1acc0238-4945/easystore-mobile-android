@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore.core.theme
+package pe.edu.upc.easystore.core.desingsystem.theme
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF006A65)

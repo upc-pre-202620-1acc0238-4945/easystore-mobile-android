@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
-import pe.edu.upc.easystore.core.theme.EasyStoreTheme
+import pe.edu.upc.easystore.core.desingsystem.theme.EasyStoreTheme
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) {

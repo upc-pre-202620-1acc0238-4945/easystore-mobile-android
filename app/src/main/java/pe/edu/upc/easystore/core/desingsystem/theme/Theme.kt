@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore.core.theme
+package pe.edu.upc.easystore.core.desingsystem.theme
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
