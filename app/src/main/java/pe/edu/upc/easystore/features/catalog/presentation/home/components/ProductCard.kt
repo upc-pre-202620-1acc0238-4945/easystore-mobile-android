@@ -14,11 +14,16 @@ import coil3.compose.AsyncImage
 import pe.edu.upc.easystore.features.catalog.domain.Product
 
 @Composable
-fun ProductCard(product: Product) {
+fun ProductCard(
+    product: Product,
+    onProductClick: () -> Unit
+
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp),
+        onClick = onProductClick
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
 
