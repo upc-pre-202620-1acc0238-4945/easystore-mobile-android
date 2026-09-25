@@ -1,8 +1,8 @@
 package pe.edu.upc.easystore.features.catalog.infrastructure.local
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room3.ColumnInfo
+import androidx.room3.Entity
+import androidx.room3.PrimaryKey
 
 @Entity(tableName = "products")
 data class ProductEntity(
