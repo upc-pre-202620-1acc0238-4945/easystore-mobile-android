@@ -53,7 +53,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             placeholder = {
-                Text(text = "Email")
+                Text(text = "Username")
             }
         )
         Spacer(modifier = Modifier.height(16.dp))
