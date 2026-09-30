@@ -1,4 +1,4 @@
-package pe.edu.upc.easystore.features.auth.presentation
+package pe.edu.upc.easystore.features.auth.presentation.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,31 +13,23 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pe.edu.upc.easystore.core.desingsystem.icon.visibility
 import pe.edu.upc.easystore.core.desingsystem.icon.visibilityOff
 import pe.edu.upc.easystore.core.desingsystem.theme.EasyStoreTheme
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
-    val email = remember {
-        mutableStateOf("")
-    }
+fun LoginScreen(modifier: Modifier = Modifier, viewModel: LoginViewModel = hiltViewModel()) {
 
-    val password = remember {
-        mutableStateOf("")
-    }
+    val state = viewModel.state.collectAsStateWithLifecycle().value
 
-    val isHiddenPassword = remember {
-        mutableStateOf(true)
-    }
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -45,10 +37,8 @@ fun LoginScreen(modifier: Modifier = Modifier) {
     ) {
 
         OutlinedTextField(
-            value = email.value,
-            onValueChange = {
-                email.value = it
-            },
+            value = state.username,
+            onValueChange = viewModel::onUsernameChange,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
@@ -59,25 +49,21 @@ fun LoginScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = password.value,
-            onValueChange = {
-                password.value = it
-            },
+            value = state.password,
+            onValueChange = viewModel::onPasswordChange,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             placeholder = {
                 Text(text = "Password")
             },
-            visualTransformation = if (isHiddenPassword.value) PasswordVisualTransformation() else
+            visualTransformation = if (state.isPasswordHidden) PasswordVisualTransformation() else
                 VisualTransformation.None,
             trailingIcon = {
-                IconButton(onClick = {
-                    isHiddenPassword.value = !isHiddenPassword.value
-                }) {
+                IconButton(onClick = viewModel::togglePasswordVisibility) {
                     Icon(
                         imageVector =
-                            if (isHiddenPassword.value) {
+                            if (state.isPasswordHidden) {
                                 visibilityOff
                             } else
                                 visibility, contentDescription = "visibility"
@@ -89,7 +75,8 @@ fun LoginScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = {}, modifier = Modifier
+            onClick = viewModel::login,
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ) {
