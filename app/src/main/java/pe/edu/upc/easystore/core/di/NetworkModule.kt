@@ -16,7 +16,7 @@ object NetworkModule {
     fun provideRetrofit(): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("https://dummyjson.com/")
+            .baseUrl("https://petapi-591531460223.us-central1.run.app/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
