@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import kotlinx.serialization.Serializable
 import pe.edu.upc.easystore.features.auth.presentation.login.LoginScreen
+import pe.edu.upc.easystore.features.catalog.presentation.navigation.CatalogNavGraphRoute
 
 @Serializable
 data object AuthNavGraphRoute
@@ -18,10 +19,17 @@ data object RegisterRoute
 
 fun NavGraphBuilder.authNavGraph(navController: NavController) {
 
-    navigation<AuthNavGraphRoute>( startDestination = LoginRoute) {
+    navigation<AuthNavGraphRoute>(startDestination = LoginRoute) {
 
         composable<LoginRoute> {
-            LoginScreen()
+            LoginScreen {
+                navController.navigate(CatalogNavGraphRoute) {
+                    popUpTo(LoginRoute) {
+                        inclusive = true
+                    }
+
+                }
+            }
         }
 
         composable<RegisterRoute> {

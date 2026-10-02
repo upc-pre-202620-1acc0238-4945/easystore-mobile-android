@@ -1,6 +1,7 @@
 package pe.edu.upc.easystore.features.auth.presentation.login
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,11 +9,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -26,61 +29,77 @@ import pe.edu.upc.easystore.core.desingsystem.icon.visibilityOff
 import pe.edu.upc.easystore.core.desingsystem.theme.EasyStoreTheme
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, viewModel: LoginViewModel = hiltViewModel()) {
+fun LoginScreen(
+    modifier: Modifier = Modifier,
+    viewModel: LoginViewModel = hiltViewModel(),
+    onLoginSuccess: () -> Unit
+) {
 
     val state = viewModel.state.collectAsStateWithLifecycle().value
 
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    LaunchedEffect(state.isAuthenticated) {
+        if (state.isAuthenticated) {
+            onLoginSuccess()
+        }
+    }
 
-        OutlinedTextField(
-            value = state.username,
-            onValueChange = viewModel::onUsernameChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            placeholder = {
-                Text(text = "Username")
-            }
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = state.password,
-            onValueChange = viewModel::onPasswordChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            placeholder = {
-                Text(text = "Password")
-            },
-            visualTransformation = if (state.isPasswordHidden) PasswordVisualTransformation() else
-                VisualTransformation.None,
-            trailingIcon = {
-                IconButton(onClick = viewModel::togglePasswordVisibility) {
-                    Icon(
-                        imageVector =
-                            if (state.isPasswordHidden) {
-                                visibilityOff
-                            } else
-                                visibility, contentDescription = "visibility"
-                    )
-                }
-            }
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = viewModel::login,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+    Box {
+        Column(
+            modifier = modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Sign in")
+
+            OutlinedTextField(
+                value = state.username,
+                onValueChange = viewModel::onUsernameChange,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                placeholder = {
+                    Text(text = "Username")
+                }
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OutlinedTextField(
+                value = state.password,
+                onValueChange = viewModel::onPasswordChange,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                placeholder = {
+                    Text(text = "Password")
+                },
+                visualTransformation = if (state.isPasswordHidden) PasswordVisualTransformation() else
+                    VisualTransformation.None,
+                trailingIcon = {
+                    IconButton(onClick = viewModel::togglePasswordVisibility) {
+                        Icon(
+                            imageVector =
+                                if (state.isPasswordHidden) {
+                                    visibilityOff
+                                } else
+                                    visibility, contentDescription = "visibility"
+                        )
+                    }
+                }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = viewModel::login,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+            ) {
+                Text(text = "Sign in")
+            }
+        }
+
+        if (state.isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }
 }
@@ -91,7 +110,7 @@ fun LoginScreenPreview() {
     EasyStoreTheme(
         dynamicColor = false
     ) {
-        LoginScreen()
+        LoginScreen {}
     }
 
 }
